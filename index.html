@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>חסידים סנטר | מתחם ההלבשה החסידית הגדול בישראל</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;700;900&family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --g:#b8922a;   /* warm gold */
+      --g2:#d4aa3e;
+      --g3:#7a6018;
+      --bg:#f7f2ea;  /* warm cream */
+      --bg2:#ede6d8;
+      --ink:#1a1208;
+      --ink2:#2e2112;
+      --mute:#7a6a4a;
+      --white:#ffffff;
+      --rule:rgba(184,146,42,.25);
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--ink);direction:rtl;overflow-x:hidden}
+    ::-webkit-scrollbar{width:5px}
+    ::-webkit-scrollbar-thumb{background:var(--g3);border-radius:2px}
+
+    /* ── NAV ── */
+    .nav{
+      position:fixed;top:0;width:100%;z-index:999;
+      background:rgba(247,242,234,.97);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--rule);
+      height:68px;padding:0 56px;
+      display:flex;align-items:center;justify-content:space-between;
+      transition:height .3s,box-shadow .3s;
+    }
+    .nav.sm{height:54px;box-shadow:0 2px 20px rgba(26,18,8,.08)}
+    .nav-logo{height:44px;object-fit:contain}
+    .nav-links{display:flex;gap:32px}
+    .nav-a{color:var(--mute);text-decoration:none;font-size:.86rem;font-weight:500;transition:color .2s}
+    .nav-a:hover{color:var(--g)}
+    .nav-end{display:flex;align-items:center;gap:20px}
+    .nav-tel{color:var(--g);font-weight:800;font-size:.98rem;text-decoration:none;direction:ltr;transition:color .2s}
+    .nav-tel:hover{color:var(--g2)}
+    .nav-cta{
+      background:var(--ink);color:var(--bg);
+      padding:8px 22px;border-radius:2px;
+      font-weight:800;font-size:.84rem;text-decoration:none;
+      transition:all .25s;
+    }
+    .nav-cta:hover{background:var(--g);transform:translateY(-1px)}
+
+    /* ── HERO ── */
+    .hero{
+      min-height:100vh;
+      background:radial-gradient(ellipse 90% 80% at 50% 40%,#3d2a0e 0%,#1e1208 60%,#0e0a04 100%);
+      display:flex;flex-direction:column;
+      align-items:center;justify-content:center;
+      text-align:center;
+      padding:130px 24px 80px;
+      position:relative;overflow:hidden;
+    }
+    .hero::before{
+      content:'';position:absolute;inset:0;pointer-events:none;
+      background:radial-gradient(ellipse 60% 50% at 50% 30%,rgba(184,146,42,.18) 0%,transparent 65%);
+    }
+    .hero-bsd{position:absolute;top:86px;right:56px;font-family:'Frank Ruhl Libre',serif;font-size:.88rem;color:var(--g);opacity:.65;z-index:2}
+    .hero-logo{
+      width:clamp(160px,20vw,210px);
+      object-fit:contain;
+      z-index:2;
+      margin-bottom:14px;
+      animation:fd .9s cubic-bezier(.22,1,.36,1) both;
+    }
+    @keyframes fd{from{opacity:0;transform:translateY(-28px) scale(.86)}to{opacity:1;transform:none}}
+    .hero-badge{
+      z-index:2;display:inline-block;margin:26px 0 16px;
+      border:1px solid rgba(184,146,42,.45);color:var(--g);
+      padding:5px 24px;border-radius:1px;
+      font-size:.72rem;letter-spacing:5px;
+      animation:fu .85s .3s both;
+    }
+    .hero-h1{
+      z-index:2;
+      font-family:'Frank Ruhl Libre',serif;
+      font-size:clamp(3rem,8.5vw,6.8rem);
+      font-weight:900;line-height:1.05;color:#fff;
+      animation:fu .85s .5s both;
+    }
+    .hero-h1 em{font-style:normal;color:var(--g)}
+    .hero-sub{
+      z-index:2;font-size:clamp(.95rem,2vw,1.25rem);
+      color:rgba(247,242,234,.5);margin:18px 0 44px;
+      animation:fu .85s .7s both;
+    }
+    .hero-btns{z-index:2;display:flex;gap:14px;flex-wrap:wrap;justify-content:center;animation:fu .85s .9s both}
+    .btn-g{
+      background:var(--g);color:var(--white);
+      padding:14px 44px;border-radius:2px;
+      font-weight:900;font-size:1rem;text-decoration:none;
+      transition:all .3s;display:inline-block;
+      box-shadow:0 4px 22px rgba(184,146,42,.35);
+    }
+    .btn-g:hover{background:var(--g2);transform:translateY(-2px);box-shadow:0 10px 30px rgba(184,146,42,.45)}
+    .btn-o{
+      border:1.5px solid rgba(247,242,234,.4);color:rgba(247,242,234,.8);
+      padding:12px 36px;border-radius:2px;
+      font-weight:700;font-size:1rem;text-decoration:none;
+      transition:all .3s;display:inline-block;
+    }
+    .btn-o:hover{border-color:var(--g);color:var(--g);transform:translateY(-2px)}
+    .hero-nums{
+      z-index:2;
+      display:flex;gap:54px;flex-wrap:wrap;justify-content:center;
+      margin-top:64px;padding-top:36px;
+      border-top:1px solid rgba(184,146,42,.2);
+      animation:fu .85s 1.05s both;
+    }
+    .hn{text-align:center}
+    .hn-n{font-size:clamp(2rem,3.5vw,2.8rem);font-weight:900;color:var(--g);line-height:1}
+    .hn-l{font-size:.78rem;color:rgba(247,242,234,.4);margin-top:5px;letter-spacing:1px}
+    @keyframes fu{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+    /* ── SEC ── */
+    .sec{padding:90px 56px}
+    .sec-light{background:var(--bg)}
+    .sec-alt{background:var(--bg2)}
+    .sec-dark{background:var(--ink)}
+    .sec-head{text-align:center;margin-bottom:64px}
+    .sec-eye{display:block;color:var(--g);font-size:.7rem;letter-spacing:5px;margin-bottom:12px}
+    .sec-h2{font-family:'Frank Ruhl Libre',serif;font-size:clamp(1.9rem,3.8vw,3rem);line-height:1.15;color:var(--ink)}
+    .sec-h2.light{color:#fff}
+    .sec-h2 b{color:var(--g);font-weight:inherit}
+    .sec-rule{width:50px;height:2px;background:var(--g);margin:18px auto 0}
+
+    /* ── STORES ── */
+    .stores-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:20px;max-width:1240px;margin:0 auto;
+    }
+    .store{
+      background:var(--bg);
+      border:1px solid rgba(184,146,42,.18);
+      padding:44px 36px 40px;
+      text-align:center;
+      transition:all .4s;
+      position:relative;
+    }
+    .store::after{
+      content:'';position:absolute;bottom:0;left:0;right:0;
+      height:3px;background:var(--g);
+      transform:scaleX(0);transition:transform .4s;transform-origin:center;
+    }
+    .store:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(26,18,8,.1);border-color:var(--g)}
+    .store:hover::after{transform:scaleX(1)}
+
+    .store-logo-box{
+      height:96px;display:flex;align-items:center;justify-content:center;
+      margin-bottom:24px;
+    }
+    .store-logo{
+      max-height:80px;max-width:220px;object-fit:contain;
+      filter:contrast(2.5) brightness(1.1) saturate(0.8);
+      mix-blend-mode:multiply;
+      transition:transform .3s;
+    }
+    .store-chasidish .store-logo{filter:invert(1) contrast(2.5) brightness(1.1) saturate(0.8)}
+    .store:hover .store-logo{transform:scale(1.04)}
+    .store-logo-fallback{font-family:'Frank Ruhl Libre',serif;font-size:2.2rem;font-weight:900;color:var(--g)}
+    /* חסידיש — כרטיס כהה */
+    .store-dark{background:var(--ink)!important;border-color:rgba(184,146,42,.4)!important}
+    .store-dark .store-logo-box{background:transparent}
+    .store-dark .store-logo{filter:none;mix-blend-mode:normal}
+    .store-dark .store-sub{color:rgba(184,146,42,.7)}
+    .store-dark .store-divider{background:var(--g)}
+    .store-dark .pill{background:rgba(184,146,42,.12);border-color:rgba(184,146,42,.3);color:rgba(247,242,234,.85)}
+    .store-dark .store-desc{color:rgba(247,242,234,.55)}
+
+    .store-divider{width:36px;height:1px;background:var(--g);margin:0 auto 18px}
+    .store-sub{font-size:.68rem;letter-spacing:3px;color:var(--mute);margin-bottom:18px}
+    .store-pills{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-bottom:18px}
+    .pill{
+      background:rgba(184,146,42,.08);border:1px solid rgba(184,146,42,.2);
+      color:var(--ink2);font-size:.77rem;padding:4px 11px;border-radius:1px;
+    }
+    .store-desc{font-size:.88rem;color:var(--mute);line-height:1.85}
+
+    /* ── GALLERY ── */
+    .gallery-grid{
+      display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+      gap:3px;max-width:1240px;margin:0 auto;
+    }
+    .gallery-item{aspect-ratio:4/3;overflow:hidden;position:relative}
+    .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .55s,filter .35s;filter:brightness(.88)}
+    .gallery-item:hover img{transform:scale(1.07);filter:brightness(1)}
+    .gallery-empty{text-align:center;color:var(--mute);font-size:.88rem;display:none;padding:40px 0}
+
+    /* ── GOLD STRIP ── */
+    .gold-strip{
+      background:var(--g);padding:52px 56px;text-align:center;
+    }
+    .gs-text{
+      font-family:'Frank Ruhl Libre',serif;
+      font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:700;
+      color:var(--white);line-height:1.3;
+    }
+    .gs-sub{font-size:.95rem;color:rgba(255,255,255,.75);margin-top:10px}
+
+    /* ── BRANCHES ── */
+    .locs{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;max-width:860px;margin:0 auto}
+    .loc{
+      background:var(--white);border:1px solid rgba(184,146,42,.18);
+      padding:44px 40px;transition:all .35s;
+    }
+    .loc:hover{box-shadow:0 16px 44px rgba(26,18,8,.09);border-color:var(--g);transform:translateY(-4px)}
+    .loc-city{font-family:'Frank Ruhl Libre',serif;font-size:2rem;font-weight:700;color:var(--g);margin-bottom:6px}
+    .loc-addr{font-size:.92rem;color:var(--mute);margin-bottom:26px}
+    .loc-hd{font-size:.67rem;font-weight:700;color:var(--g);letter-spacing:4px;margin-bottom:12px}
+    .loc-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(184,146,42,.12);font-size:.9rem}
+    .loc-row:last-of-type{border:none}
+    .loc-day{color:var(--mute)}
+    .loc-time{font-weight:700;direction:ltr;color:var(--ink)}
+    .loc-waze{
+      display:inline-flex;align-items:center;gap:7px;margin-top:22px;
+      background:var(--ink);color:var(--white);
+      padding:10px 22px;border-radius:2px;
+      font-weight:800;font-size:.84rem;text-decoration:none;
+      transition:all .3s;
+    }
+    .loc-waze:hover{background:var(--g);transform:translateY(-2px)}
+
+    /* ── CONTACT ── */
+    .contact-wrap{max-width:920px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+    .c-tel{display:block;font-size:clamp(2rem,5vw,3.4rem);font-weight:900;color:var(--g);text-decoration:none;direction:ltr;margin:22px 0 10px;transition:color .25s}
+    .c-tel:hover{color:var(--g2)}
+    .c-mail{display:inline-flex;align-items:center;gap:8px;color:var(--ink2);text-decoration:none;font-size:.93rem;margin-bottom:30px;transition:color .25s;word-break:break-all}
+    .c-mail:hover{color:var(--g)}
+    .cbr{display:flex;gap:14px;padding:11px 0;border-bottom:1px solid var(--rule)}
+    .cbr:last-child{border:none}
+    .cbr-city{font-weight:700;color:var(--g);min-width:76px}
+    .cbr-addr{color:var(--mute);font-size:.88rem}
+
+    .form-h{font-family:'Frank Ruhl Libre',serif;font-size:1.6rem;font-weight:700;color:var(--ink);margin-bottom:22px}
+    .fg{margin-bottom:15px}
+    .fg label{display:block;font-size:.68rem;font-weight:700;color:var(--g);letter-spacing:3px;margin-bottom:6px}
+    .fg input,.fg textarea{
+      width:100%;background:var(--bg);border:1px solid rgba(184,146,42,.22);border-radius:2px;
+      padding:11px 14px;color:var(--ink);font-size:.9rem;
+      font-family:'Heebo',sans-serif;outline:none;direction:rtl;transition:border-color .25s;
+    }
+    .fg input:focus,.fg textarea:focus{border-color:var(--g);background:var(--white)}
+    .fg textarea{resize:vertical;min-height:100px}
+    .form-btn{
+      width:100%;background:var(--ink);color:var(--white);
+      border:none;cursor:pointer;padding:13px;border-radius:2px;
+      font-weight:900;font-size:.96rem;font-family:'Heebo',sans-serif;
+      transition:all .3s;
+    }
+    .form-btn:hover{background:var(--g);transform:translateY(-2px)}
+
+    /* ── FOOTER ── */
+    footer{background:var(--ink);padding:44px 56px;text-align:center;border-top:3px solid var(--g)}
+    .ft-logo{width:78px;opacity:.8;margin:0 auto 16px;display:block}
+    .ft-copy{color:rgba(247,242,234,.32);font-size:.79rem;line-height:1.95}
+
+    /* ── CLUB ── */
+    .club-sec{
+      background:var(--ink2);
+      padding:70px 56px;
+      text-align:center;
+      border-top:3px solid var(--g);
+      border-bottom:3px solid var(--g);
+      position:relative;overflow:hidden;
+    }
+    .club-sec::before{
+      content:'';position:absolute;inset:0;pointer-events:none;
+      background:radial-gradient(ellipse 70% 100% at 50% 50%,rgba(184,146,42,.1) 0%,transparent 70%);
+    }
+    .club-inner{position:relative;z-index:1}
+    .club-eye{display:block;color:var(--g);font-size:.7rem;letter-spacing:5px;margin-bottom:14px}
+    .club-h2{
+      font-family:'Frank Ruhl Libre',serif;
+      font-size:clamp(1.8rem,3.5vw,2.8rem);
+      font-weight:900;color:#fff;line-height:1.2;margin-bottom:14px;
+    }
+    .club-h2 em{font-style:normal;color:var(--g)}
+    .club-sub{color:rgba(247,242,234,.55);font-size:.95rem;max-width:500px;margin:0 auto 32px;line-height:1.8}
+    .club-btn{
+      display:inline-block;
+      background:var(--g);color:#fff;
+      padding:14px 48px;border-radius:2px;
+      font-weight:900;font-size:1.05rem;text-decoration:none;
+      box-shadow:0 6px 28px rgba(184,146,42,.4);
+      transition:all .3s;
+    }
+    .club-btn:hover{background:var(--g2);transform:translateY(-3px);box-shadow:0 12px 36px rgba(184,146,42,.5)}
+
+    /* ── REVEAL ── */
+    .rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+    .rv.on{opacity:1;transform:none}
+    .d1{transition-delay:.08s}.d2{transition-delay:.18s}.d3{transition-delay:.28s}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:960px){.contact-wrap{grid-template-columns:1fr;gap:44px}}
+    @media(max-width:800px){.sec{padding:66px 22px}.nav{padding:0 20px}.nav-links{display:none}.hero-bsd{right:20px}}
+    @media(max-width:520px){.nav-cta{display:none}.hero-btns{flex-direction:column;align-items:center}}
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <img src="logo.png" alt="חסידים סנטר" class="nav-logo"/>
+  <div class="nav-links">
+    <a href="#stores"   class="nav-a">החנויות</a>
+    <a href="#gallery"  class="nav-a">גלריה</a>
+    <a href="#branches" class="nav-a">סניפים</a>
+    <a href="#contact"  class="nav-a">צרו קשר</a>
+  </div>
+  <div class="nav-end">
+    <a href="tel:0733678888" class="nav-tel">073.367.8888</a>
+    <a href="#contact" class="nav-cta">צרו קשר</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <span class="hero-bsd" aria-hidden="true">בס״ד</span>
+  <img src="logo.png" alt="חסידים סנטר" class="hero-logo"/>
+  <span class="hero-badge">מתחם ההלבשה החסידית הגדול בישראל</span>
+  <h1 class="hero-h1">מכף רגל<br/><em>ועד ראש</em></h1>
+  <p class="hero-sub">כל מה שצריכים — בטרקלין אחד מפואר</p>
+  <div class="hero-btns">
+    <a href="#stores" class="btn-g">גלו את החנויות</a>
+    <a href="tel:0733678888" class="btn-o">📞 &nbsp;073.367.8888</a>
+  </div>
+  <div class="hero-nums">
+    <div class="hn"><div class="hn-n">3</div><div class="hn-l">חנויות מובחרות</div></div>
+    <div class="hn"><div class="hn-n">2</div><div class="hn-l">סניפים</div></div>
+    <div class="hn"><div class="hn-n">אלפי</div><div class="hn-l">פריטים במלאי</div></div>
+    <div class="hn"><div class="hn-n">מכף</div><div class="hn-l">רגל ועד ראש</div></div>
+  </div>
+</header>
+
+<!-- STORES -->
+<section class="sec sec-light" id="stores">
+  <div class="sec-head rv">
+    <span class="sec-eye">שלוש חנויות תחת קורת גג אחת</span>
+    <h2 class="sec-h2">המתחם שיש בו <b>הכל</b></h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="stores-grid">
+
+    <div class="store rv d1">
+      <div class="store-logo-box">
+        <img src="logo-gb.png" alt="GB" class="store-logo"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+        <span class="store-logo-fallback" style="display:none">GB</span>
+      </div>
+      <div class="store-sub">THE BETTER GARMENT</div>
+      <div class="store-divider"></div>
+      <div class="store-pills">
+        <span class="pill">חליפות</span><span class="pill">בעקיטשעס</span>
+        <span class="pill">מעילים</span><span class="pill">קפוטות</span>
+        <span class="pill">מלבושי שבת</span>
+      </div>
+      <p class="store-desc">מלבושי כבוד מן המניין. חליפות מהוקצעות, בעקיטשעס בכל הסוגים והדגמים, מעילים מובחרים — לכל עונה ולכל אירוע.</p>
+    </div>
+
+    <div class="store store-chasidish rv d2">
+      <div class="store-logo-box">
+        <img src="logo-chasidish.png" alt="חסידיש" class="store-logo"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+        <span class="store-logo-fallback" style="display:none">חסידיש</span>
+      </div>
+      <div class="store-sub">CHASSIDISH COLLECTION</div>
+      <div class="store-divider"></div>
+      <div class="store-pills">
+        <span class="pill">חולצות</span><span class="pill">כיפות</span>
+        <span class="pill">ציציות</span><span class="pill">גרביים</span>
+        <span class="pill">הלבשה אישית</span>
+        <span class="pill">מוצרי חורף</span>
+        <span class="pill">תשמישי קדושה</span>
+      </div>
+      <p class="store-desc">כל פריטי הלבוש וההלבשה האישית — חולצות, כיפות, ציציות, גרביים, מוצרי חורף ותשמישי קדושה. הכל במקום אחד.</p>
+    </div>
+
+    <div class="store rv d3">
+      <div class="store-logo-box">
+        <img src="logo-galitman.png" alt="גלית מן" class="store-logo"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+        <span class="store-logo-fallback" style="display:none">גלית מן</span>
+      </div>
+      <div class="store-sub">FOOTWEAR COLLECTION</div>
+      <div class="store-divider"></div>
+      <div class="store-pills">
+        <span class="pill">נעלי שבת</span><span class="pill">נעלי חורף</span>
+        <span class="pill">נעלי יום יום</span><span class="pill">נעלי חתן</span>
+        <span class="pill">אלפי זוגות</span>
+      </div>
+      <p class="store-desc">אלפי זוגות נעליים תחת קורת גג אחת. נעלי שבת, חורף, יום יום ונעלי חתן — המבחר הגדול ביותר, לכל עונה ולכל אירוע.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="sec sec-alt" id="gallery">
+  <div class="sec-head rv">
+    <span class="sec-eye">אצלנו</span>
+    <h2 class="sec-h2">טרקלין <b>מפואר</b></h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="gallery-grid" id="galleryGrid"></div>
+  <p class="gallery-empty" id="galleryEmpty">הוסף תמונות בשם photo1.jpg, photo2.jpg ...</p>
+</section>
+
+<!-- GOLD STRIP -->
+<div class="gold-strip">
+  <div class="gs-text rv">כל מה שצריכים — בטרקלין אחד מפואר</div>
+  <p class="gs-sub rv">מלבושים · הלבשה אישית · תשמישי קדושה · נעליים</p>
+</div>
+
+<!-- CLUB -->
+<section class="club-sec">
+  <div class="club-inner rv">
+    <span class="club-eye">הצטרפו אלינו</span>
+    <h2 class="club-h2">מועדון לקוחות <em>חסידים סנטר</em></h2>
+    <p class="club-sub">הטבות בלעדיות, מבצעים ראשונים, עדכונים על אירועים וקולקציות חדשות</p>
+    <a href="https://s1c.me/hasidim_join_01" target="_blank" rel="noopener" class="club-btn">להצטרפות למועדון ←</a>
+  </div>
+</section>
+
+<!-- BRANCHES -->
+<section class="sec sec-light" id="branches">
+  <div class="sec-head rv">
+    <span class="sec-eye">סניפינו</span>
+    <h2 class="sec-h2">קרובים <b>אליכם</b></h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="locs">
+    <div class="loc rv d1">
+      <div class="loc-city">ירושלים</div>
+      <div class="loc-addr">📍 יחזקאל 24</div>
+      <div class="loc-hd">שעות פתיחה</div>
+      <div class="loc-row"><span class="loc-day">יום א׳</span><span class="loc-time">13:00 – 22:00</span></div>
+      <div class="loc-row"><span class="loc-day">ימים ב׳–ה׳</span><span class="loc-time">13:00 – 21:00</span></div>
+      <div class="loc-row"><span class="loc-day">יום ו׳</span><span class="loc-time">10:00 – 12:00</span></div>
+      <a href="https://waze.com/ul?q=יחזקאל+24+ירושלים" target="_blank" rel="noopener" class="loc-waze">🗺️ נווט לסניף</a>
+    </div>
+    <div class="loc rv d2">
+      <div class="loc-city">בני ברק</div>
+      <div class="loc-addr">📍 שלמה המלך 12</div>
+      <div class="loc-hd">שעות פתיחה</div>
+      <div class="loc-row"><span class="loc-day">יום א׳</span><span class="loc-time">13:00 – 22:00</span></div>
+      <div class="loc-row"><span class="loc-day">ימים ב׳–ה׳</span><span class="loc-time">13:00 – 21:00</span></div>
+      <div class="loc-row"><span class="loc-day">יום ו׳</span><span class="loc-time">10:00 – 12:00</span></div>
+      <a href="https://waze.com/ul?q=שלמה+המלך+12+בני+ברק" target="_blank" rel="noopener" class="loc-waze">🗺️ נווט לסניף</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec sec-alt" id="contact">
+  <div class="sec-head rv">
+    <span class="sec-eye">דברו איתנו</span>
+    <h2 class="sec-h2">אנחנו כאן <b>בשבילכם</b></h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="contact-wrap">
+    <div class="rv d1">
+      <p style="color:var(--mute);line-height:1.8;font-size:.96rem">לשאלות, מידע על מוצרים, או כל פנייה — אנחנו זמינים.</p>
+      <a href="tel:0733678888" class="c-tel">073.367.8888</a>
+      <a href="mailto:office@chasidim-center.co.il" class="c-mail">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        office@chasidim-center.co.il
+      </a>
+      <div>
+        <div class="cbr"><span class="cbr-city">ירושלים</span><span class="cbr-addr">יחזקאל 24</span></div>
+        <div class="cbr"><span class="cbr-city">בני ברק</span><span class="cbr-addr">שלמה המלך 12</span></div>
+      </div>
+    </div>
+    <div class="rv d2">
+      <form action="mailto:office@chasidim-center.co.il" method="post" enctype="text/plain">
+        <h3 class="form-h">שלחו לנו הודעה</h3>
+        <div class="fg"><label>שם מלא</label><input type="text" name="שם" placeholder="הכנס שם" required/></div>
+        <div class="fg"><label>טלפון</label><input type="tel" name="טלפון" placeholder="05X-XXXXXXX" dir="ltr"/></div>
+        <div class="fg"><label>מייל</label><input type="email" name="מייל" placeholder="your@email.com" dir="ltr"/></div>
+        <div class="fg"><label>הודעה</label><textarea name="הודעה" placeholder="במה נוכל לעזור?"></textarea></div>
+        <button type="submit" class="form-btn">שליחת הודעה ✉️</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img src="logo.png" alt="חסידים סנטר" class="ft-logo"/>
+  <p class="ft-copy">
+    בס״ד &nbsp;|&nbsp; © חסידים סנטר &nbsp;|&nbsp; מתחם ההלבשה החסידית הגדול בישראל<br/>
+    GB · חסידיש · גלית מן<br/>
+    ירושלים: יחזקאל 24 &nbsp;|&nbsp; בני ברק: שלמה המלך 12<br/>
+    073.367.8888 &nbsp;|&nbsp; office@chasidim-center.co.il
+  </p>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('sm', scrollY > 60));
+
+  const io = new IntersectionObserver(
+    es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } }),
+    { threshold: 0.1 }
+  );
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+
+  // Gallery
+  (function() {
+    const grid = document.getElementById('galleryGrid');
+    const empty = document.getElementById('galleryEmpty');
+    let loaded = 0, tried = 0;
+    const names = [];
+    for (let i = 1; i <= 20; i++) ['webp','jpg','jpeg','png'].forEach(e => names.push(`photo${i}.${e}`));
+    names.forEach(name => {
+      const img = new Image();
+      img.onload = () => {
+        loaded++;
+        const w = document.createElement('div');
+        w.className = 'gallery-item rv';
+        img.alt = 'חסידים סנטר';
+        w.appendChild(img);
+        grid.appendChild(w);
+        io.observe(w);
+      };
+      img.onerror = () => { tried++; if (tried === names.length && loaded === 0) empty.style.display = 'block'; };
+      img.src = name;
+    });
+  })();
+</script>
+</body>
+</html>
