@@ -483,16 +483,18 @@
       </div>
     </div>
     <div class="rv d2">
-      <form action="https://formspree.io/f/xnjwlpdy" method="POST">
+      <form id="contact-form" action="https://formspree.io/f/xnjwlpdy" method="POST">
         <input type="hidden" name="_language" value="he"/>
         <input type="hidden" name="_subject" value="פנייה חדשה מהאתר – חסידים סנטר"/>
-        <input type="hidden" name="_next" value="https://chasidim-center.co.il"/>
         <h3 class="form-h">שלחו לנו הודעה</h3>
         <div class="fg"><label>שם מלא</label><input type="text" name="name" placeholder="הכנס שם" required/></div>
         <div class="fg"><label>טלפון</label><input type="tel" name="phone" placeholder="05X-XXXXXXX" dir="ltr"/></div>
         <div class="fg"><label>מייל</label><input type="email" name="_replyto" placeholder="your@email.com" dir="ltr"/></div>
         <div class="fg"><label>הודעה</label><textarea name="message" placeholder="במה נוכל לעזור?"></textarea></div>
-        <button type="submit" class="form-btn">שליחת הודעה ✉️</button>
+        <button type="submit" class="form-btn" id="form-btn">שליחת הודעה ✉️</button>
+        <div id="form-success" style="display:none;margin-top:1rem;padding:1rem 1.2rem;background:#d4edda;border-radius:6px;color:#155724;font-size:1rem;text-align:center;line-height:1.6;">
+          ✅ תודה! ההודעה נשלחה בהצלחה.<br/>ניצור איתך קשר בהקדם.
+        </div>
       </form>
     </div>
   </div>
@@ -524,6 +526,35 @@
       const t = document.querySelector(a.getAttribute('href'));
       if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
     });
+  });
+
+  // Contact Form
+  const contactForm = document.getElementById('contact-form');
+  contactForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('form-btn');
+    btn.disabled = true;
+    btn.textContent = 'שולח...';
+    try {
+      const res = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        contactForm.reset();
+        document.getElementById('form-success').style.display = 'block';
+        btn.style.display = 'none';
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'שליחת הודעה ✉️';
+        alert('שגיאה בשליחה, נסה שוב.');
+      }
+    } catch(err) {
+      btn.disabled = false;
+      btn.textContent = 'שליחת הודעה ✉️';
+      alert('שגיאה בשליחה, נסה שוב.');
+    }
   });
 
   // Gallery
