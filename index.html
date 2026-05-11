@@ -487,10 +487,11 @@
         <input type="hidden" name="_language" value="he"/>
         <input type="hidden" name="_subject" value="פנייה חדשה מהאתר – חסידים סנטר"/>
         <h3 class="form-h">שלחו לנו הודעה</h3>
-        <div class="fg"><label>שם מלא</label><input type="text" name="name" placeholder="הכנס שם" required/></div>
-        <div class="fg"><label>טלפון</label><input type="tel" name="phone" placeholder="05X-XXXXXXX" dir="ltr"/></div>
-        <div class="fg"><label>מייל</label><input type="email" name="_replyto" placeholder="your@email.com" dir="ltr"/></div>
-        <div class="fg"><label>הודעה</label><textarea name="message" placeholder="במה נוכל לעזור?"></textarea></div>
+        <input type="hidden" name="_replyto" id="replyto-hidden"/>
+        <div class="fg"><label>שם מלא</label><input type="text" name="שם מלא" placeholder="הכנס שם" required/></div>
+        <div class="fg"><label>טלפון</label><input type="tel" name="טלפון" placeholder="05X-XXXXXXX" dir="ltr"/></div>
+        <div class="fg"><label>מייל</label><input type="email" name="אימייל" id="email-input" placeholder="your@email.com" dir="ltr"/></div>
+        <div class="fg"><label>הודעה</label><textarea name="הודעה" placeholder="במה נוכל לעזור?"></textarea></div>
         <button type="submit" class="form-btn" id="form-btn">שליחת הודעה ✉️</button>
         <div id="form-success" style="display:none;margin-top:1rem;padding:1rem 1.2rem;background:#d4edda;border-radius:6px;color:#155724;font-size:1rem;text-align:center;line-height:1.6;">
           ✅ תודה! ההודעה נשלחה בהצלחה.<br/>ניצור איתך קשר בהקדם.
@@ -535,6 +536,8 @@
     const btn = document.getElementById('form-btn');
     btn.disabled = true;
     btn.textContent = 'שולח...';
+    const emailVal = document.getElementById('email-input');
+    if (emailVal) document.getElementById('replyto-hidden').value = emailVal.value;
     try {
       const res = await fetch(contactForm.action, {
         method: 'POST',
