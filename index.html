@@ -485,7 +485,7 @@
     <div class="rv d2">
       <form id="contact-form" action="https://formspree.io/f/xnjwlpdy" method="POST">
         <input type="hidden" name="_language" value="he"/>
-        <input type="hidden" name="_subject" value="פנייה חדשה מהאתר – חסידים סנטר"/>
+        <input type="hidden" name="_subject" id="form-subject" value="פנייה חדשה מהאתר – חסידים סנטר"/>
         <h3 class="form-h">שלחו לנו הודעה</h3>
         <div class="fg"><label>שם מלא</label><input type="text" name="שם מלא" placeholder="הכנס שם" required/></div>
         <div class="fg"><label>טלפון</label><input type="tel" name="טלפון" placeholder="05X-XXXXXXX" dir="ltr"/></div>
@@ -535,6 +535,13 @@
     const btn = document.getElementById('form-btn');
     btn.disabled = true;
     btn.textContent = 'שולח...';
+    const emailField = contactForm.querySelector('[name="email"]');
+    const nameField = contactForm.querySelector('[name="שם מלא"]');
+    const subjectField = document.getElementById('form-subject');
+    if (emailField && emailField.value) {
+      const senderName = nameField && nameField.value ? nameField.value : '';
+      subjectField.value = 'פנייה חדשה מ' + (senderName ? ' ' + senderName : '') + ' — ' + emailField.value;
+    }
     try {
       const res = await fetch(contactForm.action, {
         method: 'POST',
