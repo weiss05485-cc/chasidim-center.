@@ -55,35 +55,40 @@
     /* ── HERO ── */
     .hero{
       min-height:100vh;
-      background:radial-gradient(ellipse 90% 80% at 50% 40%,#3d2a0e 0%,#1e1208 60%,#0e0a04 100%);
+      background:#0e0a04;
       display:flex;flex-direction:column;
       align-items:center;justify-content:center;
       text-align:center;
       padding:130px 24px 80px;
       position:relative;overflow:hidden;
     }
-    .hero::before{
-      content:'';position:absolute;inset:0;pointer-events:none;
-      background:radial-gradient(ellipse 60% 50% at 50% 30%,rgba(184,146,42,.18) 0%,transparent 65%);
+    .hero-video{
+      position:absolute;inset:0;width:100%;height:100%;
+      object-fit:cover;opacity:.6;
+      z-index:0;pointer-events:none;
     }
-    .hero-bsd{position:absolute;top:86px;right:56px;font-family:'Frank Ruhl Libre',serif;font-size:.88rem;color:var(--g);opacity:.65;z-index:2}
+    .hero::before{
+      content:'';position:absolute;inset:0;pointer-events:none;z-index:1;
+      background:radial-gradient(ellipse 90% 80% at 50% 40%,rgba(61,42,14,.5) 0%,rgba(14,10,4,.65) 60%,rgba(14,10,4,.75) 100%);
+    }
+    .hero-bsd{position:absolute;top:86px;right:56px;font-family:'Frank Ruhl Libre',serif;font-size:.88rem;color:var(--g);opacity:.65;z-index:3}
     .hero-logo{
       width:clamp(160px,20vw,210px);
       object-fit:contain;
-      z-index:2;
+      z-index:3;
       margin-bottom:14px;
       animation:fd .9s cubic-bezier(.22,1,.36,1) both;
     }
     @keyframes fd{from{opacity:0;transform:translateY(-28px) scale(.86)}to{opacity:1;transform:none}}
     .hero-badge{
-      z-index:2;display:inline-block;margin:26px 0 16px;
+      z-index:3;display:inline-block;margin:26px 0 16px;
       border:1px solid rgba(184,146,42,.45);color:var(--g);
       padding:5px 24px;border-radius:1px;
       font-size:.72rem;letter-spacing:5px;
       animation:fu .85s .3s both;
     }
     .hero-h1{
-      z-index:2;
+      z-index:3;
       font-family:'Frank Ruhl Libre',serif;
       font-size:clamp(3rem,8.5vw,6.8rem);
       font-weight:900;line-height:1.05;color:#fff;
@@ -91,11 +96,11 @@
     }
     .hero-h1 em{font-style:normal;color:var(--g)}
     .hero-sub{
-      z-index:2;font-size:clamp(.95rem,2vw,1.25rem);
+      z-index:3;font-size:clamp(.95rem,2vw,1.25rem);
       color:rgba(247,242,234,.5);margin:18px 0 44px;
       animation:fu .85s .7s both;
     }
-    .hero-btns{z-index:2;display:flex;gap:14px;flex-wrap:wrap;justify-content:center;animation:fu .85s .9s both}
+    .hero-btns{z-index:3;display:flex;gap:14px;flex-wrap:wrap;justify-content:center;animation:fu .85s .9s both}
     .btn-g{
       background:var(--g);color:var(--white);
       padding:14px 44px;border-radius:2px;
@@ -112,7 +117,7 @@
     }
     .btn-o:hover{border-color:var(--g);color:var(--g);transform:translateY(-2px)}
     .hero-nums{
-      z-index:2;
+      z-index:3;
       display:flex;gap:54px;flex-wrap:wrap;justify-content:center;
       margin-top:64px;padding-top:36px;
       border-top:1px solid rgba(184,146,42,.2);
@@ -260,6 +265,33 @@
     }
     .form-btn:hover{background:var(--g);transform:translateY(-2px)}
 
+    /* ── REVIEWS ── */
+    .reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:1100px;margin:0 auto}
+    .review-card{background:var(--white);border:1px solid rgba(184,146,42,.18);padding:32px 28px;position:relative;transition:all .35s}
+    .review-card:hover{transform:translateY(-5px);box-shadow:0 16px 44px rgba(26,18,8,.09);border-color:var(--g)}
+    .review-stars{color:var(--g);font-size:1.1rem;margin-bottom:14px;letter-spacing:2px}
+    .review-text{font-size:.93rem;color:var(--mute);line-height:1.85;margin-bottom:18px;font-style:italic}
+    .review-text::before{content:'"';font-size:2rem;color:var(--g);line-height:0;vertical-align:-12px;margin-left:4px}
+    .review-text::after{content:'"';font-size:2rem;color:var(--g);line-height:0;vertical-align:-12px;margin-right:4px}
+    .review-author{font-weight:700;color:var(--ink);font-size:.88rem}
+    .review-city{font-size:.78rem;color:var(--mute);margin-top:3px}
+
+    /* ── FAQ ── */
+    .faq-wrap{max-width:760px;margin:0 auto}
+    .faq-item{border-bottom:1px solid var(--rule);overflow:hidden}
+    .faq-q{
+      width:100%;background:none;border:none;cursor:pointer;
+      padding:22px 0;display:flex;justify-content:space-between;align-items:center;
+      font-family:'Heebo',sans-serif;font-size:1rem;font-weight:700;color:var(--ink);
+      text-align:right;transition:color .25s;
+    }
+    .faq-q:hover{color:var(--g)}
+    .faq-icon{font-size:1.4rem;color:var(--g);transition:transform .35s;flex-shrink:0;margin-right:16px}
+    .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+    .faq-a p{padding:0 0 20px;color:var(--mute);line-height:1.85;font-size:.93rem}
+    .faq-item.open .faq-icon{transform:rotate(45deg)}
+    .faq-item.open .faq-a{max-height:200px}
+
     /* ── FOOTER ── */
     footer{background:var(--ink);padding:44px 56px;text-align:center;border-top:3px solid var(--g)}
     .ft-logo{width:78px;opacity:.8;margin:0 auto 16px;display:block}
@@ -302,6 +334,42 @@
     .rv.on{opacity:1;transform:none}
     .d1{transition-delay:.08s}.d2{transition-delay:.18s}.d3{transition-delay:.28s}
 
+    /* ── ANIMATIONS ── */
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    @keyframes shimmer{0%{background-position:200% center}100%{background-position:-200% center}}
+    @keyframes pulse-gold{0%,100%{box-shadow:0 4px 22px rgba(184,146,42,.35)}50%{box-shadow:0 8px 40px rgba(184,146,42,.7)}}
+    @keyframes spin-slow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+    @keyframes count-up{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
+
+    /* לוגו צף */
+    .hero-logo{animation:fd .9s cubic-bezier(.22,1,.36,1) both, float 4s ease-in-out 1s infinite}
+
+    /* כפתור זהב פועם */
+    .btn-g{animation:pulse-gold 2.5s ease-in-out infinite}
+    .btn-g:hover{animation:none}
+
+    /* כותרת Hero — ברק זהב */
+    .hero-h1 em{
+      background:linear-gradient(90deg,#b8922a,#f0d060,#b8922a,#f0d060,#b8922a);
+      background-size:300% auto;
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      animation:shimmer 3s linear infinite;
+    }
+
+    /* Gold strip — גלים */
+    .gold-strip{position:relative;overflow:hidden}
+    .gold-strip::after{
+      content:'';position:absolute;top:-50%;left:-100%;
+      width:60%;height:200%;
+      background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.15) 50%,transparent 60%);
+      animation:slide-shine 4s ease-in-out infinite;
+    }
+    @keyframes slide-shine{0%{left:-100%}100%{left:200%}}
+
+    /* מספרים — אנימציית כניסה */
+    .hn-n{display:inline-block;transition:transform .3s}
+    .hn:hover .hn-n{transform:scale(1.2);color:var(--g2)}
+
     /* ── RESPONSIVE ── */
     @media(max-width:960px){.contact-wrap{grid-template-columns:1fr;gap:44px}}
     @media(max-width:800px){.sec{padding:66px 22px}.nav{padding:0 20px}.nav-links{display:none}.hero-bsd{right:20px}}
@@ -327,6 +395,9 @@
 
 <!-- HERO -->
 <header class="hero">
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="hero.mp4" type="video/mp4"/>
+  </video>
   <span class="hero-bsd" aria-hidden="true">בס״ד</span>
   <img src="logo.png" alt="חסידים סנטר" class="hero-logo"/>
   <span class="hero-badge">מתחם ההלבשה החסידית הגדול בישראל</span>
