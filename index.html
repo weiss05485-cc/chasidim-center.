@@ -380,7 +380,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav class="nav" id="nav">
   <img src="logo.png" alt="חסידים סנטר" class="nav-logo"/>
   <div class="nav-links">
@@ -395,7 +394,6 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <header class="hero">
   <video class="hero-video" autoplay muted loop playsinline>
     <source src="hero.mp4" type="video/mp4"/>
@@ -417,7 +415,6 @@
   </div>
 </header>
 
-<!-- STORES -->
 <section class="sec sec-light" id="stores">
   <div class="sec-head rv">
     <span class="sec-eye">שלוש חנויות תחת קורת גג אחת</span>
@@ -479,7 +476,6 @@
   </div>
 </section>
 
-<!-- GALLERY -->
 <section class="sec sec-alt" id="gallery">
   <div class="sec-head rv">
     <span class="sec-eye">אצלנו</span>
@@ -490,13 +486,11 @@
   <p class="gallery-empty" id="galleryEmpty">הוסף תמונות בשם photo1.jpg, photo2.jpg ...</p>
 </section>
 
-<!-- GOLD STRIP -->
 <div class="gold-strip">
   <div class="gs-text rv">כל מה שצריכים — בטרקלין אחד מפואר</div>
   <p class="gs-sub rv">מלבושים · הלבשה אישית · תשמישי קדושה · נעליים</p>
 </div>
 
-<!-- CLUB -->
 <section class="club-sec">
   <div class="club-inner rv">
     <span class="club-eye">הצטרפו אלינו</span>
@@ -506,7 +500,6 @@
   </div>
 </section>
 
-<!-- BRANCHES -->
 <section class="sec sec-light" id="branches">
   <div class="sec-head rv">
     <span class="sec-eye">סניפינו</span>
@@ -518,8 +511,7 @@
       <div class="loc-city">ירושלים</div>
       <div class="loc-addr">📍 יחזקאל 24</div>
       <div class="loc-hd">שעות פתיחה</div>
-      <div class="loc-row"><span class="loc-day">יום א׳</span><span class="loc-time">13:00 – 22:00</span></div>
-      <div class="loc-row"><span class="loc-day">ימים ב׳–ה׳</span><span class="loc-time">13:00 – 21:00</span></div>
+      <div class="loc-row"><span class="loc-day">ימים א׳–ה׳</span><span class="loc-time">13:00 – 21:00</span></div>
       <div class="loc-row"><span class="loc-day">יום ו׳</span><span class="loc-time">10:00 – 12:00</span></div>
       <a href="https://waze.com/ul?q=יחזקאל+24+ירושלים" target="_blank" rel="noopener" class="loc-waze">🗺️ נווט לסניף</a>
     </div>
@@ -527,15 +519,13 @@
       <div class="loc-city">בני ברק</div>
       <div class="loc-addr">📍 שלמה המלך 12</div>
       <div class="loc-hd">שעות פתיחה</div>
-      <div class="loc-row"><span class="loc-day">יום א׳</span><span class="loc-time">13:00 – 22:00</span></div>
-      <div class="loc-row"><span class="loc-day">ימים ב׳–ה׳</span><span class="loc-time">13:00 – 21:00</span></div>
+      <div class="loc-row"><span class="loc-day">ימים א׳–ה׳</span><span class="loc-time">13:00 – 21:00</span></div>
       <div class="loc-row"><span class="loc-day">יום ו׳</span><span class="loc-time">10:00 – 12:00</span></div>
       <a href="https://waze.com/ul?q=שלמה+המלך+12+בני+ברק" target="_blank" rel="noopener" class="loc-waze">🗺️ נווט לסניף</a>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
 <section class="sec sec-alt" id="contact">
   <div class="sec-head rv">
     <span class="sec-eye">דברו איתנו</span>
@@ -573,7 +563,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <img src="logo.png" alt="חסידים סנטר" class="ft-logo"/>
   <p class="ft-copy">
@@ -643,7 +632,7 @@
     const empty = document.getElementById('galleryEmpty');
     let loaded = 0, tried = 0;
     const names = [];
-    for (let i = 1; i <= 20; i++) ['webp','jpg','jpeg','png'].forEach(e => names.push(`photo${i}.${e}`));
+    for (let i = 1; i <= 30; i++) ['webp','jpg','jpeg','png'].forEach(e => names.push(`photo${i}.${e}`));
     names.forEach(name => {
       const img = new Image();
       img.onload = () => {
